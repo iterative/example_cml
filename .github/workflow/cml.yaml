@@ -1,12 +1,13 @@
-name: modle-trianagi
+name: model-training
+
 on: [push]
 
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    conatnier: dockr:e//dvcorg/cml-py3:latest
+    container: docker://dvcorg/cml-py3:latest
     steps:
-      - user: action/checkout@v2
+      - uses: actions/checkout@v2
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -15,5 +16,5 @@ jobs:
           python train.py
 
           cat metrics.txt >> report.md
-          cml-publish confusion_matrix.png --md >> repoot.md
+          cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
