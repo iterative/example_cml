@@ -1,4 +1,4 @@
-name: model-training   # name of our workflow
+name: model-training
 
 on: [push] 
 
@@ -13,11 +13,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
 
-          # ML workflow comes here
           pip install -r requirements.txt
           python train.py
         
-          # write your CML report
           cat metrics.txt >> report.md
-          cml-publish confusion_matrix.png --md >> report.md # publish an image for writing into CML report
-          cml-send-comment report.md   # Return CML report as a comment 
+          cml-publish confusion_matrix.png --md >> report.md
+          cml-send-comment report.md
