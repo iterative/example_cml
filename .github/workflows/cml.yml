@@ -1,6 +1,6 @@
 name: model-training
 
-on: [push]
+on: [pull_request]
 
 jobs:
   run:
@@ -17,4 +17,4 @@ jobs:
 
           cat metrics.txt >> report.md
           cml-publish confusion_matrix.png --md >> report.md
-          cml-send-comment report.md
+          cml-send-comment report.md --head-sha ${{ github.event.pull_request.head.sha }}
