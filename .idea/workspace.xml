@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="308867b6-1147-4220-8a9b-2f40d2cfb549" name="Default Changelist" comment="" />
+    <list default="true" id="308867b6-1147-4220-8a9b-2f40d2cfb549" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,9 +41,9 @@
       <screen x="-1920" y="2" width="1920" height="1040" />
     </state>
     <state x="-1202" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.2.1920.1040@-1920.2.1920.1040" timestamp="1597299753452" />
-    <state x="-1459" y="164" key="SettingsEditor" timestamp="1597299573039">
+    <state x="-1459" y="164" key="SettingsEditor" timestamp="1597300955197">
       <screen x="-1920" y="2" width="1920" height="1040" />
     </state>
-    <state x="-1459" y="164" key="SettingsEditor/0.0.1920.1040/-1920.2.1920.1040@-1920.2.1920.1040" timestamp="1597299573039" />
+    <state x="-1459" y="164" key="SettingsEditor/0.0.1920.1040/-1920.2.1920.1040@-1920.2.1920.1040" timestamp="1597300955197" />
   </component>
 </project>
