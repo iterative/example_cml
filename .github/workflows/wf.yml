@@ -1,0 +1,25 @@
+name: your-workflow-name
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: cml_run
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: |
+
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+
+          dvc pull -r myremote
+
+          python train.py
+
+          # Write your CML report
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
+          cml-send-comment report.md
