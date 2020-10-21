@@ -13,6 +13,8 @@ jobs:
           pip install -r requirements.txt
           python train.py
 
-          cat metrics.txt >> report.md
+          # Report metrics
+          dvc metrics diff master --show-md >> report.md
+
           cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
