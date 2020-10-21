@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import plot_confusion_matrix, classification_report
-import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report
 import json
 import os
 import numpy as np
@@ -15,7 +14,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 depth = 5
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train, y_train)
-
+y_pred = clf.predict(X_test)
 acc = clf.score(X_test, y_test)
 
 os.mkdir("./metrics/")
@@ -24,9 +23,12 @@ with open("./metrics/metrics.json", 'w') as outfile:
     json.dump({"accuracy": acc}, outfile)
 
 with open("./metrics/classification_report.json", "w") as outfile:
-    json.dump(classification_report(y_test, clf.predict(X_test), output_dict=True), outfile)
+    json.dump(classification_report(y_test, y_pred, output_dict=True), outfile)
 
-# Plot it
-disp = plot_confusion_matrix(clf, X_test, y_test, normalize='true', cmap=plt.cm.Blues)
-plt.savefig('./metrics/confusion_matrix.png')
+with open("./classes.csv", "w") as writefile:
+    writefile.write("actual,predicted")
+    writefile.write("\n")
+    for line in zip(y_test, y_pred):
+        writefile.write(f"{y_test},{y_pred}")
+        writefile.write("\n")
 
