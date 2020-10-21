@@ -15,7 +15,6 @@ jobs:
 
           # Report metrics
           echo "## Metrics" >> report.md
-          cat metrics.txt >> report.md
           git fetch --prune
           dvc metrics diff master --show-md >> report.md
 
