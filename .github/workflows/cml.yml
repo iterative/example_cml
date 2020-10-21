@@ -11,7 +11,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          dvc run -n trainer --metrics-no-cache ./metrics/metrics.json --plots-no-cache ./metrics/confusion_matrix.png python train.py
+          dvc run -n trainer --metrics-no-cache ./metrics/metrics.json python train.py
 
           # Report metrics
           echo "## Metrics" >> report.md
