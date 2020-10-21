@@ -11,11 +11,16 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          dvc run -n trainer --metrics_dir metrics/ python train.py
+          dvc run -n trainer --metrics-no-cache ./metrics/metrics.json --plots-no-cache ./metrics/confusion_matrix.png python train.py
 
           # Report metrics
           echo "## Metrics" >> report.md
           git fetch --prune
           dvc metrics diff master --show-md >> report.md
+
+          # Publish confusion matrix diff
+          echo -e "## Plots\n### Class confusions" >> report.md
+          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega master > vega.json
+          vl2png vega.json -s 1.5 | cml-publish --md >> report.md
 
           cml-send-comment report.md
