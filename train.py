@@ -25,7 +25,7 @@ with open("./metrics/metrics.json", 'w') as outfile:
 with open("./metrics/classification_report.json", "w") as outfile:
     json.dump(classification_report(y_test, y_pred, output_dict=True), outfile)
 
-with open("./predictions.csv", "w") as writefile:
+with open("predictions.csv", "w") as writefile:
     writefile.write("actual,predicted")
     writefile.write("\n")
     for line in zip(y_test, y_pred):
