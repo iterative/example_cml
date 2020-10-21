@@ -14,7 +14,9 @@ jobs:
           python train.py
 
           # Report metrics
+          echo "## Metrics" >> report.md
+          cat metrics.txt >> report.md
+          git fetch --prune
           dvc metrics diff master --show-md >> report.md
 
-          cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
