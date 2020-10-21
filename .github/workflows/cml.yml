@@ -18,4 +18,9 @@ jobs:
           git fetch --prune
           dvc metrics diff master --show-md >> report.md
 
+          # Publish confusion matrix diff
+          echo -e "## Plots\n### Class confusions" >> report.md
+          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega master > vega.json
+          vl2png vega.json -s 1.5 | cml-publish --md >> report.md
+
           cml-send-comment report.md
