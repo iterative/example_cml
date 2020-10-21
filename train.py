@@ -21,7 +21,7 @@ with open("metrics.json", 'w') as outfile:
 
 
 with open("classification_report.json", "w") as outfile:
-    json.dump(classification_report(y_test, clf.predict(X_test), output_dict=True))
+    json.dump(classification_report(y_test, clf.predict(X_test), output_dict=True), outfile)
 
 # Plot it
 disp = plot_confusion_matrix(clf, X_test, y_test, normalize='true', cmap=plt.cm.Blues)
