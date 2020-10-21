@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import plot_confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 import json
 import numpy as np
@@ -18,6 +18,10 @@ clf.fit(X_train, y_train)
 acc = clf.score(X_test, y_test)
 with open("metrics.json", 'w') as outfile:
     json.dump({"accuracy": acc}, outfile)
+
+
+with open("classification_report.json", "w") as outfile:
+    json.dump(classification_report(y_test, clf.predict(X_test), output_dict=True))
 
 # Plot it
 disp = plot_confusion_matrix(clf, X_test, y_test, normalize='true', cmap=plt.cm.Blues)
