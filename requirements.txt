@@ -1,3 +1,5 @@
 setuptools
 sklearn
 matplotlib
+dvc
+
