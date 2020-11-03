@@ -3,4 +3,4 @@
 ['remote "localremote"']
     url = /tmp/dvc-storage
 ['remote "storage"']
-    url = http://s3-sa-east-1.amazonaws.com/my-dvc-storage/
+    url = s3://my-dvc-storage
