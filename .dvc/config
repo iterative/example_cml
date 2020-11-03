@@ -1,4 +1,6 @@
 [core]
-    remote = localremote
+    remote = storage
 ['remote "localremote"']
     url = /tmp/dvc-storage
+['remote "storage"']
+    url = http://s3-sa-east-1.amazonaws.com/my-dvc-storage/
