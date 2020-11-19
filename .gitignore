@@ -1,1 +1,4 @@
-/data/
+data/test_features.csv
+data/test_labels.csv
+data/train_features.csv
+data/train_labels.csv
