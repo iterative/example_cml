@@ -1,0 +1,4 @@
+[core]
+    remote = cml-seed-remote
+['remote "cml-seed-remote"']
+    url = s3://qa-s3stack-1h324mm61dovc-machinelearningbucket-d89zbi8e1vo1/cml-seed/
