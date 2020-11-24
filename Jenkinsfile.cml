@@ -1,0 +1,25 @@
+node ('ecs') {
+    checkout scm
+
+    def pipeline = load "/var/jenkins_home/pipeline.groovy"
+
+    pipeline.prepareEnvironment("cml-seed")
+}
+
+private Train() {
+        stage('train') {
+            agent {
+                docker { image 'dvcorg/cml-py3' }
+            }
+            environment {
+                GITHUB_TOKEN = credentials('TOKEN')
+            }
+            steps {
+                pip install -r requirements.txt
+                python train.py
+                cat metrics.txt >> report.md
+                cml-publish confusion_matrix.png --md >> report.md
+                cml-send-comment report.md
+            }
+        }
+}
