@@ -1,4 +1,4 @@
-name: model-training
+name: train-test
 on: [push]
 jobs:
   run:
@@ -7,12 +7,32 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: cml_run
+        shell: bash
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          # Install requirements
           pip install -r requirements.txt
-          python train.py
 
-          cat metrics.txt >> report.md
-          cml-publish confusion_matrix.png --md >> report.md
+          # Pull data & run-cache from S3 and reproduce pipeline
+          dvc pull data --run-cache
+          dvc repro
+
+          # Report metrics
+          echo "## Metrics" >> report.md
+          git fetch --prune
+          dvc metrics diff master --show-md >> report.md
+
+          # Publish confusion matrix diff
+          echo -e "## Plots\n### Class confusions" >> report.md
+          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega master > vega.json
+          vl2png vega.json -s 1.5 | cml-publish --md >> report.md
+
+          # Publish regularization function diff
+          echo "### Effects of regularization\n" >> report.md
+          dvc plots diff --target estimators.csv -x Regularization --show-vega master > vega.json
+          vl2png vega.json -s 1.5 | cml-publish --md >> report.md
+
           cml-send-comment report.md
