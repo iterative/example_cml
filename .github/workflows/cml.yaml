@@ -15,9 +15,6 @@ jobs:
           pip install -r requirements.txt
           python pre-train.py
 
-          # Write your CML report
-          cat results.txt >> report.md
-          cml-send-comment report.md
   train:
     runs-on: [ubuntu-latest]
     container: docker://dvcorg/cml-py3:latest
