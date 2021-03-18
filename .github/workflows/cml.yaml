@@ -24,9 +24,10 @@ jobs:
           dvc repro model.p.dvc
           dvc run (dvc configuration) python train.py   
           
-          # Push Meta data + Model to GIt
+          # Push Meta data + Model to Git
           dvc add dvc.lock
           dvc add *.dvc
+          
           # Pull Model from DVC
           dvc pull model.p.dvc
 
