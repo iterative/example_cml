@@ -19,6 +19,16 @@ jobs:
           # Pull data & run-cache from S3 and reproduce pipeline
           dvc pull data --run-cache
           dvc repro
+          
+          # Push model to DVC
+          dvc repro model.p.dvc
+          dvc run (dvc configuration) python train.py   
+          
+          # Push Meta data + Model to GIt
+          dvc add dvc.lock
+          dvc add *.dvc
+          # Pull Model from DVC
+          dvc pull model.p.dvc
 
           # Report metrics
           echo "## Metrics" >> report.md
