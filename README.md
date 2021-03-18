@@ -18,7 +18,7 @@ This repository contains code and data for a simple classification problem. To g
 
 ## Analysis
 
-We want to pull the model once it's been fully trained in the cloud. We could use either a combination of DVC and Git to do this, or just DVC alone. As in, we could store & preserve the model metadata on DVC and the model to git, or vice versa. DVC is a better choice for AI/ML projects as it contains the ability to store large datasets on popular third party services like Azure, AWS, and Google Drive.
+We only want to pull the model once it's been fully trained in the cloud. We also want to preserve our model by checkpointing at a given interval, and we could use either DVC or Git to do this As in, we could store & preserve the model metadata on DVC and the model to git, or vice versa. DVC is a better choice for AI/ML projects as it contains the ability to store large datasets on popular third party services like Azure, AWS, and Google Drive. 
 
 ## Credits
 
