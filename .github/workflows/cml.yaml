@@ -17,6 +17,7 @@ jobs:
           pip install -r requirements.txt
 
           # Pull data & run-cache from S3 and reproduce pipeline
+          dvc init
           dvc pull data --run-cache
           dvc repro
           
