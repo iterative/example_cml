@@ -16,7 +16,7 @@ jobs:
         run: |
           cml-runner \
           --cloud aws \
-          --cloud-region us-west \
+          --cloud-region us-east \
           --cloud-type=t2.micro \
           --labels=cml-runner
   name: model-training
