@@ -1,13 +1,16 @@
-name: "Train-in-the-cloud"
+name: train-my-model
+
 on: [push]
 
 jobs:
   deploy-runner:
     runs-on: [ubuntu-latest]
     steps:
-      - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v2
-      - name: "Deploy runner on EC2, take 2"
+
+      - uses: iterative/setup-cml@v1
+
+      - name: deploy
         shell: bash
         env:
           repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -19,18 +22,26 @@ jobs:
           --cloud-region us-east \
           --cloud-type=t2.micro \
           --labels=cml-runner
-  name: model-training
+  run:
     needs: deploy-runner
     runs-on: [self-hosted,cml-runner]
-    container: docker://dvcorg/cml-py3:latest
+    container: docker://dvcorg/cml
+
     steps:
     - uses: actions/checkout@v2
-    - name: "Train my model"
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+
+    - name: cml
       env:
         repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
+        python --version
         pip install -r requirements.txt
         python train.py
-        # Publish report with CML
-        cat metrics.txt > report.md
+        echo "## Report from your EC2 Instance" > report.md
+        cat metrics.txt >> report.md
+        cml-publish "confusion_matrix.png" --md >> report.md
         cml-send-comment report.md
