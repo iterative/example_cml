@@ -3,7 +3,7 @@ name: experimenting
 on:
   push:
     branches:
-      - 'test**'
+      - 'test-**'
 
 jobs:
   test:
