@@ -1,0 +1,30 @@
+name: experimenting
+
+on:
+  pull_request:
+    branches:
+      - 'test-**'
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+         python-version: 3.9
+      - uses: iterative/setup-cml@v1
+      - name: Run model
+        run: |
+          pip install -r requirements.txt
+          python train.py
+      - name: Write report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
+          cml-send-comment report.md
