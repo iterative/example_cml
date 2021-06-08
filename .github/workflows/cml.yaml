@@ -1,9 +1,6 @@
 name: experimenting
 
-on:
-  pull_request:
-    branches:
-      - 'test-**'
+on: pull_request
 
 jobs:
   test:
