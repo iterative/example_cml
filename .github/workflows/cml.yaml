@@ -1,7 +1,7 @@
 name: experimenting
 
 on:
-  pull_request:
+  push:
     branches:
       - 'test**'
 
