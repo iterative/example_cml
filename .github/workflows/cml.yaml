@@ -1,6 +1,9 @@
 name: experimenting
 
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - 'test**'
 
 jobs:
   test:
@@ -13,7 +16,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
          python-version: 3.9
-      - uses: iterative/setup-cml@v1
+      - name: Set up CML
+        uses: iterative/setup-cml@v1
       - name: Run model
         run: |
           pip install -r requirements.txt
