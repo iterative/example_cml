@@ -1,3 +1,6 @@
 setuptools
-sklearn
-matplotlib
+sklearn~=0.0
+matplotlib~=3.4.2
+
+numpy~=1.20.3
+scikit-learn~=0.24.2
