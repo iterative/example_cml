@@ -1,34 +1,26 @@
-name: Train-in-the-cloud
-on: [push]
-jobs:
-  deploy-runner:
-    runs-on: [ubuntu-latest]
-    steps:
-      - uses: iterative/setup-cml@v1
-      - uses: actions/checkout@v2
-      - name: Deploy runner on EC2
-        env:
-          REPO_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          cml-runner \
-              --cloud aws \
-              --cloud-region eu-west \
-              --cloud-type=t2.micro \
-              --labels=cml-runner
-  model-training:
-    needs: [deploy-runner]
-    runs-on: [self-hosted, cml-runner]
-    container: docker://dvcorg/cml:0-dvc2-base1-gpu
-    steps:
-      - uses: actions/checkout@v2
-      - name: Train model
-        env:
-          REPO_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          pip install -r requirements.txt
-          python train.py
+on:
+  push:
+    branch: spike/poddie_cicd
 
-          cat metrics.txt > report.md
-          cml-send-comment report.md
+env:
+  TF_LOG: trace
+  TF_LOG_PATH: /tmp/terraform.log
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      - run: >-
+          cml-runner 
+          --cloud aws 
+          --cloud-region eu-west-1
+          --cloud-type=t2.micro
+          || true
+        env:
+          repo_token: ${{ secrets.ACCESS_TOKEN_CML }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_temp }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_temp }}
+      - run: >-
+          cat "$TF_LOG_PATH"
