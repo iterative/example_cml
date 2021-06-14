@@ -2,3 +2,4 @@ setuptools
 sklearn
 matplotlib
 dvc[s3]
+pandas
