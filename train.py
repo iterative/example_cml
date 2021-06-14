@@ -4,6 +4,19 @@ import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
+import csv
+import dvc.api
+import pandas as pd
+
+with dvc.api.open(
+    'data/iris.csv',
+    repo='https://github.com/kapoork31/versionining.git',
+    rev='1.1'
+) as fd:
+    data = pd.read_csv(fd)
+    # fd is a file descriptor which can be processed normally
+
+print(len(data))
 
 # Read in data
 # test
