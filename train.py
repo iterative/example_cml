@@ -7,16 +7,10 @@ import numpy as np
 import csv
 import dvc.api
 import pandas as pd
+import os
 
-with dvc.api.open(
-    'data_folder/iris.csv',
-    repo='https://github.com/healiosuk/ML-project-template.git',
-    rev='master'
-) as fd:
-    data = pd.read_csv(fd)
-    # fd is a file descriptor which can be processed normally
-
-print(len(data))
+GITHUB_TOKEN = os.getenv('REPO_TOKEN')
+print(GITHUB_TOKEN)
 
 # Read in data
 # test
