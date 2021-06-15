@@ -7,11 +7,19 @@ import numpy as np
 import csv
 import dvc.api
 import pandas as pd
-import os
 
 GITHUB_TOKEN = os.getenv('REPO_TOKEN')
-print(GITHUB_TOKEN)
+url = 'https://' + GITHUB_TOKEN + ':@' + 'github.com/healiosuk/ML-project-template'
+print(url)
 
+with dvc.api.open(
+    'data_folder/iris.csv',
+    repo=url,
+    rev='master'
+) as fd:
+    data = pd.read_csv(fd)
+    # fd is a file descriptor which can be processed normally
+print(len(data))
 # Read in data
 # test
 X_train = np.genfromtxt("data/train_features.csv")
