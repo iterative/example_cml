@@ -9,9 +9,9 @@ import dvc.api
 import pandas as pd
 
 with dvc.api.open(
-    'data/iris.csv',
-    repo='https://github.com/kapoork31/versionining.git',
-    rev='1.1'
+    'data_folder/iris.csv',
+    repo='https://github.com/healiosuk/ML-project-template.git',
+    rev='master'
 ) as fd:
     data = pd.read_csv(fd)
     # fd is a file descriptor which can be processed normally
