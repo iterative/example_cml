@@ -32,6 +32,6 @@ jobs:
           pip install -r requirements.txt
           python train.py
 
-          cat metrics.txt > report.md
-          cml-publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
