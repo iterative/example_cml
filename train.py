@@ -7,6 +7,7 @@ import numpy as np
 import csv
 import dvc.api
 import pandas as pd
+from sklearn.metrics import precision_score
 
 GITHUB_TOKEN = os.getenv('REPO_TOKEN')
 url = 'https://' + GITHUB_TOKEN + ':@' + 'github.com/healiosuk/ML-project-template'
@@ -34,10 +35,14 @@ clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train,y_train)
 
 acc = clf.score(X_test, y_test)
+y_pred = clf.predict(X_test)
 print(acc)
-with open("metrics.txt", 'w') as outfile:
-        outfile.write("Accuracy: " + str(acc) + "\n")
-
+precision = precision_score(y_test, y_pred, average='macro')
+print(precision)
+df = pd.DataFrame(data = {"Value":[acc,precision]}, index=["accuracy","precision"])
+df.index.names= ['Metric']
+with open("metrics.txt", "w") as outfile:
+    outfile.write(df.to_markdown())
 
 # Plot it
 disp = plot_confusion_matrix(clf, X_test, y_test, normalize='true',cmap=plt.cm.Blues)
