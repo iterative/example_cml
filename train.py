@@ -42,7 +42,7 @@ print(acc)
 precision = precision_score(y_test, y_pred, average='macro')
 print(precision)
 
-mlflow.set_tracking_uri('MLFLOW_URL)
+mlflow.set_tracking_uri(MLFLOW_URL)
 # set experiment name to whatever you want, if it doesn't exist it will be created.
 mlflow.set_experiment("test mlflow with cml")
 with mlflow.start_run(run_name="run 2") as run:
