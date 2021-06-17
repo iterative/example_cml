@@ -13,6 +13,7 @@ import mlflow
 GITHUB_TOKEN = os.getenv('REPO_TOKEN')
 url = 'https://' + GITHUB_TOKEN + ':@' + 'github.com/healiosuk/ML-project-template'
 print(url)
+MLFLOW_URL = os.getenv('MLFLOW_URL')
 
 with dvc.api.open(
     'data_folder/iris.csv',
@@ -41,10 +42,10 @@ print(acc)
 precision = precision_score(y_test, y_pred, average='macro')
 print(precision)
 
-mlflow.set_tracking_uri('http://testuser:healios-mlflow@ec2-172-31-30-230.eu-west-1.compute.amazonaws.com/')
+mlflow.set_tracking_uri('MLFLOW_URL)
 # set experiment name to whatever you want, if it doesn't exist it will be created.
 mlflow.set_experiment("test mlflow with cml")
-with mlflow.start_run(run_name="run 1") as run:
+with mlflow.start_run(run_name="run 2") as run:
     
     # add parameters for tuning
     num_estimators = 100
