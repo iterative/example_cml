@@ -3,3 +3,4 @@ sklearn
 matplotlib
 dvc[s3]
 pandas
+mlflow
