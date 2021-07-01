@@ -1,8 +1,10 @@
 name: model-training
-on: [push]
+on:
+  pull_request:  # this only runs on a pull request to main
+    branches: [ main ]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
