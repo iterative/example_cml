@@ -13,7 +13,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 
 # Fit a model
-depth = 2
+depth = 5
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train,y_train)
 
@@ -26,4 +26,3 @@ with open("metrics.txt", 'w') as outfile:
 # Plot it
 disp = plot_confusion_matrix(clf, X_test, y_test, normalize='true',cmap=plt.cm.Blues)
 plt.savefig('confusion_matrix.png')
-
