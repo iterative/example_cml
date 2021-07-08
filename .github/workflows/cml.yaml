@@ -1,8 +1,8 @@
 name: model-training
 on: 
     push:
-    branches:
-      - experiment
+       branches:
+         - experiment
 
 jobs:
   run:
