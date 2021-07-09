@@ -21,3 +21,21 @@ jobs:
           cat metrics.txt >> report.md
           cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
+
+  directory:
+    runs-on: [ubuntu-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout p1
+      uses: actions/checkout@v2
+    
+    - name: Copycat Directory
+      uses: andstor/copycat-action@v3.0.0
+      with:
+          personal_token: ${{ secrets.PORTFOLIO_SECRET }}
+          src_path: data/*
+          dst_path: data/
+          dst_owner: LarryLecomte
+          dst_repo_name: prodserver_cml
