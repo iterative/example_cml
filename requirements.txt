@@ -1,3 +1,4 @@
 setuptools
 sklearn
 matplotlib
+pandas

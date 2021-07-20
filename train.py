@@ -1,9 +1,6 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
-import warnings
-warnings.filterwarnings("ignore")
 
 # Read in data
 df = pd.read_csv("data/winequality-red-train.csv")
@@ -17,15 +14,10 @@ df.columns
 
 df.drop(["Id"],axis = 1,inplace = True)
 
-from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import f1_score
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import roc_auc_score
-import statsmodels.api as sm
-from sklearn.metrics import accuracy_score
 
 X = df.drop( "quality",axis=1)
 y = df["quality"]
