@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
+import pickle
 
 # Read in data
 df = pd.read_csv("data/winequality-red-test.csv")
@@ -47,4 +48,4 @@ plt.savefig('confusion_matrix.png')
 
 # save model file
 with open("model/model.pkcl", 'wb') as pickle_file:
-    pickle.dump(clf, pickle_file)
+    pickle.dump(rfc, pickle_file)
