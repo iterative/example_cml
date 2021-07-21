@@ -38,6 +38,8 @@ rfc.fit(X_train,y_train)
 y_pred = rfc.predict(X_test)
 
 with open("metrics.txt", 'w') as outfile:
+        outfile.write("Algorithm : RandomForestClassifier\n")
+        outfile.write("Parameters :" + rfc.get_params() + "\n")
         outfile.write("F1 Score :" + str(round(f1_score(y_pred,y_test,average = "weighted"), 2)) + "\n")
         outfile.write("Report:\n" + classification_report(y_test, y_pred) + "\n")
 
