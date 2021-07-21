@@ -5,6 +5,7 @@ on:
          - master
 
 jobs:
+
   run:
     runs-on: [ubuntu-latest]
     steps:
@@ -17,25 +18,23 @@ jobs:
         run: |
           pip install -r requirements.txt
           python test.py
-
+          git config --global user.name "larry.lecomte"
+          git config --global user.email "larry.lecomte@gmail.com"
+          git add model/model.pkcl && git commit -m "generate model file" --allow-empty
+          git push origin master
           cat metrics.txt >> report.md
           cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
-
-  directory:
-    runs-on: [ubuntu-latest]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Checkout p1
-      uses: actions/checkout@v2
-    
-    - name: Copycat Directory
-      uses: andstor/copycat-action@v3.0.0
-      with:
-          personal_token: ${{ secrets.PORTFOLIO_SECRET }}
-          src_path: data/*
-          dst_path: data/
-          dst_owner: LarryLecomte
+      - uses: andstor/copycat-action@v3
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          personal_token: ${{ secrets.API_TOKEN_GITHUB }}
+          src_path: /model/
+          dst_path: /model/
+          dst_owner: larrylecomte
           dst_repo_name: prodserver_cml
+          dst_branch: master
+          src_branch: master
+          username: larrylecomte
+          email: 'larry.lecomte@gmail.com'
