@@ -1,0 +1,3 @@
+outs:
+- md5: 7ccc2f89a32247c15673c8fabf70f60a
+  path: winequality-red-train-dataset.csv
