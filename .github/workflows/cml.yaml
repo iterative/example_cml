@@ -7,6 +7,7 @@ on:
 jobs:
   run:
     runs-on: [ubuntu-latest]
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -16,7 +17,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          dvc pull 
+          dvc pull
           python train.py
 
           cat metrics.txt >> report.md
