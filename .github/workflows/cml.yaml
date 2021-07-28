@@ -18,8 +18,7 @@ jobs:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           pip install -r requirements.txt
-          dvc remote add -d myremote gdrive://1IHGZHtgoc8syNXktKwpwGbmJ7D3o063G
-          dvc pull
+          dvc pull --remote myremote
           python train.py
 
           cat metrics.txt >> report.md
