@@ -4,7 +4,7 @@ from sklearn.metrics import plot_confusion_matrix
 import pickle
 
 # Read in data
-df = pd.read_csv("data/winequality-red-test.csv")
+df = pd.read_csv("data/winequality-red-test-dataset.csv")
 df
 
 df['quality'].value_counts()

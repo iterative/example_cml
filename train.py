@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import plot_confusion_matrix
 
 # Read in data
-df = pd.read_csv("data/winequality-red-train.csv")
+df = pd.read_csv("data/winequality-red-train-dataset.csv")
 df
 
 df['quality'].value_counts()
