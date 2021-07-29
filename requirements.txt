@@ -2,3 +2,4 @@ setuptools
 sklearn
 matplotlib
 pandas
+dvc
