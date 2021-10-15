@@ -7,15 +7,11 @@ jobs:
      steps:
         - uses: actions/checkout@v2
         - name: Train model
-        -  env:
+          env:
               REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        -  run: |
+          run: |
               pip install -r requirements.txt
-        -  run:
               python train.py
-        -  run:
               cat metrics.txt >> report.md
-        -  run:
               cml publish confusion_matrix.png --md >> report.md
-        -  run:
               cml send-comment report.md
