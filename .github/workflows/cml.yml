@@ -1,0 +1,35 @@
+name: train-my-model
+
+on: [push]
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: iterative/setup-cml@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - name: run_master
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python train.py
+          echo "Master branch" >> report.md
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
+      - uses: actions/checkout@v2
+      - name: run_incoming
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python train.py
+          echo "Incoming branch" >> report.md
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
+      - run: cml-send-comment report.md
