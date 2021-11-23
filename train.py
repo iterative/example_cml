@@ -12,8 +12,15 @@ X_test = np.genfromtxt("data/test_features.csv")
 y_test = np.genfromtxt("data/test_labels.csv")
 
 
+# get some QA for a report
+#array_sum = np.sum(np.concatenate((X_train, X_test), axis=0))
+#array_has_nan = np.isnan(array_sum)
+
+#with open("quality_check.txt", 'w') as outfile:
+#        outfile.write("Missing values in the design matrix: " + str() )
+
 # Fit a model
-depth = 6
+depth = 8
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train,y_train)
 
