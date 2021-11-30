@@ -15,7 +15,5 @@ jobs:
               cat metrics.txt >> report.md
               cml publish confusion_matrix.png --md >> report.md
               cml send-comment report.md
-              echo "Test...." >> test.txt
-              cml send-comment test.txt
 
 
