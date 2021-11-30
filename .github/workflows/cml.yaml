@@ -10,7 +10,7 @@ jobs:
           env:
               REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-              cat "Test....." >> test.txt
+              echo "Test....." >> test.txt
               pip install -r requirements.txt
               python train.py
               cat metrics.txt >> report.md
