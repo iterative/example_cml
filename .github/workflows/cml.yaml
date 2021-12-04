@@ -1,0 +1,19 @@
+name: test-workflow
+on: [push]
+jobs:
+  run:
+    runs-on: [self-hosted, cml, gpu]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Train model
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python train.py
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          cat results.txt >> report.md
+          cml-send-comment report.md
