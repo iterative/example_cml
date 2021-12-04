@@ -15,5 +15,6 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Post reports as comments in GitHub PRs
-          cat results.txt >> report.md
+          cat metrics.txt >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
           cml-send-comment report.md
