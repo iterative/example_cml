@@ -1,19 +1,18 @@
-name: cml
+name: CML
 on: [push]
 jobs:
   run:
      runs-on: ubuntu-latest
      container: docker://ghcr.io/iterative/cml:0-dvc2-base1
-     steps:steps:
+     steps:
         - uses: actions/checkout@v2
-        - uses: iterative/setup-cml@v1
         - name: Train model
            env:
               REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            run: |
-              pip3 install -r requirements.txt
-              python train.py --output plot.png
+              pip install -r requirements.txt
+              python train.py
 
-              echo 'My first CML report' > report.md
-              cml-publish plot.png --md --title 'confusion-matrix' > report.md
-              cml-send-comment report.md
+              cat metrics.txt >> report.md
+              cml publish confusion_matrix.png --md >> report.md
+              cml send-comment report.md
