@@ -1,4 +1,4 @@
-name: CML
+name: cml
 on: [push]
 jobs:
   run:
@@ -10,9 +10,9 @@ jobs:
            env:
               REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            run: |
-              pip install -r requirements.txt
+              pip3 install -r requirements.txt
               python train.py
 
               cat metrics.txt >> report.md
-              cml publish confusion_matrix.png --md >> report.md
+              cml publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
               cml send-comment report.md
