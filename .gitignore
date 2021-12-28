@@ -1,3 +1,5 @@
 .vscode
 *.pyc
 .pytest_cache
+confusion_matrix.png
+metrics.txt
