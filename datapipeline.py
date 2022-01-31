@@ -13,9 +13,9 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, date
 
-import sys
-sys.path.append('/home')
-from aimodels.universal_function import *
+#import sys
+#sys.path.append('/home')
+#from aimodels.universal_function import *
 
 
 args = {
