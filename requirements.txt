@@ -3,3 +3,4 @@ pyspark
 datetime
 pandas
 numpy
+aimodels
