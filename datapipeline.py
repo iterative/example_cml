@@ -120,11 +120,6 @@ def Write_data(ti):
     spark = spark_init(name = "Test",front=False)
     sdf = spark.createDataFrame(df,schema)
     sdf.write.format("parquet").mode("overwrite").save(path)
-    with open("metrics.txt", "w") as outfile:
-        outfile.write("Archivo parquet generado.\n") 
-    # Plot it
-    #disp = plot_confusion_matrix()
-    #plt.savefig("plot.png")
 
 ### Creación de las tareas
     
