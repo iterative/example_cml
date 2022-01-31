@@ -12,8 +12,7 @@ from pyspark.sql.types import *
 import pandas as pd
 import numpy as np
 from datetime import datetime, date
-from azure.storage.blob import BlockBlobService
-import time as ti
+
 import sys
 sys.path.append('/home')
 from aimodels.universal_function import *
