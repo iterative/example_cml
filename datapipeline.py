@@ -1,8 +1,8 @@
 ### Data Pipeline desarrollado en Airflow
 
 from __future__ import print_function
-from builtins import range
-from pprint import pprint
+#from builtins import range
+#from pprint import pprint
 from airflow.utils.dates import days_ago
 from airflow.models import DAG
 from airflow.operators.python_operator import PythonOperator
@@ -31,7 +31,7 @@ dag = DAG(
 )
 
 def print_context(ds, **kwargs):
-    pprint(kwargs)
+    #pprint(kwargs)
     print(ds)
     return 'Whatever you return gets printed in the logs'
 
