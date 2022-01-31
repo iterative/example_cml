@@ -1,4 +1,4 @@
-airflow
+apache-airflow
 pyspark
 datetime
 pandas
