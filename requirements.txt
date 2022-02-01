@@ -1,3 +1,5 @@
-setuptools
-sklearn
-matplotlib
+apache-airflow
+pyspark
+datetime
+pandas
+numpy
