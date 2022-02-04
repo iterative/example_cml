@@ -12,10 +12,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          python datapipeline.py
-	  add . 
-          git commit -m "New Commit in Integration on `date +'%Y-%m-%d %H:%M:%S'`" 
-          git push origin Integration	
+          python datapipeline.py	
           #cat metrics.txt >> report.md
           #cml-publish plot.png --md >> report.md
           #cml-send-comment report.md
