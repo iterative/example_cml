@@ -1,4 +1,4 @@
-name: your-workflow-name
+name: testing_cml
 on: [push]
 jobs:
   run:
@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.x'
       - uses: iterative/setup-cml@v1
-      - name: Installing requirements:
+      - name: Installing requirements
         run: |
           pip install -r requirements.txt
       - name: Train model
