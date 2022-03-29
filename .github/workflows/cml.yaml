@@ -11,13 +11,10 @@ jobs:
       # - uses: actions/setup-node@v2
       #   with:
       #     node-version: '16'
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
+#       - uses: actions/setup-python@v3
+#         with:
+#           python-version: '3.x'
       - uses: iterative/setup-cml@v1
-#       - name: Installing requirements
-#         run: |
-#           pip install -r requirements.txt
       - name: Train model
         run: |
           # Your ML workflow goes here
