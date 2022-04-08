@@ -13,10 +13,12 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          pylint train.py >> report.md
           python train.py
+          python detect.py
 
           cat metrics.txt >> report.md
           cml-publish plot1.png --md >> report.md
+          echo "Detection Step" >> report.md
+          cat detect.txt >> report.md
           cml-send-comment report.md
          

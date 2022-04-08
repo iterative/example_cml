@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
+import pickle
 
 # Read in data
 X_train = np.genfromtxt("data/train_features.csv")
@@ -20,6 +21,11 @@ acc = clf.score(X_test, y_test)
 print(acc)
 with open("metrics.txt", "w") as outfile:
     outfile.write("Accuracy: " + str(acc) + "\n")
+    
+# save
+with open('model.pkl','wb') as f:
+    pickle.dump(clf,f)
+
 
 # Plot it
 disp = ConfusionMatrixDisplay.from_estimator(
