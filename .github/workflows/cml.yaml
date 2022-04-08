@@ -13,6 +13,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
+          pylint train.py
           python train.py
 
           cat metrics.txt >> report.md
