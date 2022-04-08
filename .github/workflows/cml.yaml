@@ -14,10 +14,17 @@ jobs:
         run: |
           pip install -r requirements.txt
           python train.py
-          python detect.py
 
           cat metrics.txt >> report.md
           cml-publish plot1.png --md >> report.md
+          cml-send-comment report.md
+          
+      - name: Detect model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python detect.py
+
           echo "Detection Step" >> report.md
           cat detect.txt >> report.md
           cml-send-comment report.md
