@@ -1,4 +1,4 @@
 setuptools
-sklearn>=1
+sklearn
 matplotlib
 numpy
