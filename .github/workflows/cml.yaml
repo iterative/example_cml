@@ -24,13 +24,15 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          
           # Post reports as comments in GitHub PRs
-          #cat results.txt >> report.md
-          ls -ltr 
           pwd
+          ls -ltr 
           which cml
           
+          echo "Prepare report"
           cat metrics.txt
           cat metrics.txt > report.md
           cml publish ./confusion_matrix.png >> reports.md
-          cml send-comment report.md
+          echo "Send the comment"
+          cml send comment report.md
