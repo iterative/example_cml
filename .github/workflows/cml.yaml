@@ -35,4 +35,9 @@ jobs:
           cat metrics.txt > report.md
           cml publish ./confusion_matrix.png >> reports.md
           echo "Send the comment"
-          cml send comment report.md
+          #cml send comment report.md
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: confusion_matrix
+          path: confusion_matrix.png
