@@ -27,5 +27,10 @@ jobs:
           # Post reports as comments in GitHub PRs
           #cat results.txt >> report.md
           ls -ltr 
+          pwd
           which cml
+          
+          cat results.txt
+          cat results.txt > report.md
+          cml publish ./confusion_matrix.png >> reports.md
           #cml-send-comment report.md
