@@ -30,7 +30,7 @@ jobs:
           pwd
           which cml
           
-          cat results.txt
-          cat results.txt > report.md
+          cat metrics.txt
+          cat metrics.txt > report.md
           cml publish ./confusion_matrix.png >> reports.md
           #cml-send-comment report.md
