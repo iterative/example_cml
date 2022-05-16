@@ -15,4 +15,5 @@ jobs:
           python train.py
 
           echo "## model matrics" >report.md
-          cat metrics.txt >>report.md
+          cat metrics.txt >> report.md
+          cml send-comment report.md
