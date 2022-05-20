@@ -19,8 +19,6 @@ jobs:
           dvc repro
           python train.py
 
-          cat metrics.txt >> report.md
-          cml publish confusion_matrix.png --md >> report.md
-          cml send-comment report.md
+          
           
          
