@@ -1,3 +1,4 @@
 setuptools
-sklearn>=1
+sklearn
 matplotlib
+dvc
