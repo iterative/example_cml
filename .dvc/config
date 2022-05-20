@@ -1,0 +1,7 @@
+[core]
+    autostage = true
+    remote = data_new
+['remote "check_data"']
+    url = gdrive://1W4blMPu7eaQQm2gX2T3o880T1AVz9nRl
+['remote "data_new"']
+    url = gdrive://12zBQY_MPjHecqZkqWWuXDro1LVbx4pAW
