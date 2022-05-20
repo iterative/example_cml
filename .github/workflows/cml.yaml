@@ -14,9 +14,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           # Pull data & run-cache from S3 and reproduce pipeline
-          dvc run
           dvc pull data --run-cache
-          dvc repro
           python train.py
 
           cat metrics.txt >> report.md
