@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python get_data.py
+    deps:
+    - path: get_data.py
+      md5: 9faa4de082e123fdbe458ad095f677bf
+      size: 585
+    outs:
+    - path: data/
+      md5: 8a434f00cfe5b438d3d4cd8ac4391c47.dir
+      size: 536957
+      nfiles: 4
+  train:
+    cmd: python train.py
+    deps:
+    - path: data/
+      md5: 8a434f00cfe5b438d3d4cd8ac4391c47.dir
+      size: 536957
+      nfiles: 4
+    - path: train.py
+      md5: da6792803eb4f4695b278c8447912932
+      size: 805
+    outs:
+    - path: confusion_matrix.png
+      md5: d1026b848c5d5f829f1a64418d10a1b8
+      size: 17278
+    - path: metrics.txt
+      md5: 12c6f00e6b7f3f435259dae1da7e7328
+      size: 17
