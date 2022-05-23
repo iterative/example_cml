@@ -25,4 +25,4 @@ with open("metrics.txt", "w") as outfile:
 disp = ConfusionMatrixDisplay.from_estimator(
     clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
 )
-plt.savefig("confusion_matrix.png")
+plt.savefig("plot.png")
