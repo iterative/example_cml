@@ -11,8 +11,8 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install -r requirements.txt
-          python train.py
+          python3.10 -m pip install --user -r requirements.txt
+          python3.10 train.py
 
           cat metrics.txt >> report.md
           cml publish plot.png --md >> report.md
