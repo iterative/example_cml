@@ -1,0 +1,6 @@
+Requirement already satisfied: sklearn in /Users/mes/Library/Python/3.10/lib/python/site-packages (0.0)
+Requirement already satisfied: scikit-learn in /Users/mes/Library/Python/3.10/lib/python/site-packages (from sklearn) (1.0.2)
+Requirement already satisfied: numpy>=1.14.6 in /Users/mes/Library/Python/3.10/lib/python/site-packages (from scikit-learn->sklearn) (1.22.3)
+Requirement already satisfied: scipy>=1.1.0 in /Users/mes/Library/Python/3.10/lib/python/site-packages (from scikit-learn->sklearn) (1.8.0)
+Requirement already satisfied: joblib>=0.11 in /Users/mes/Library/Python/3.10/lib/python/site-packages (from scikit-learn->sklearn) (1.1.0)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /Users/mes/Library/Python/3.10/lib/python/site-packages (from scikit-learn->sklearn) (3.1.0)
