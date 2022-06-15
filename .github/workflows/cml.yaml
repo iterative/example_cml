@@ -2,8 +2,7 @@ name: CML
 on: [push]
 jobs:
   run:
-    runs-on: ubuntu-latest
-    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    runs-on: [self-hosted, cml, gpu]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -17,4 +16,6 @@ jobs:
 
           cat metrics.txt >> report.md
           cml publish plot.png --md >> report.md
+          echo "## GPU info" >> report.md
+          cat gpu_info.txt >> report.md
           cml send-comment report.md
