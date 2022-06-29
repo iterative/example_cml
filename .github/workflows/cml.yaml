@@ -13,8 +13,8 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          sudo -H pip install -r requirements.txt
-          python train.py
+          pip install -r example_cml/requirements.txt
+          python example_cml/train.py
 
           cat metrics.txt >> report.md
           cml publish plot.png --md >> report.md
