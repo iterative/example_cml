@@ -1,21 +1,21 @@
-name: CML
+name: train-my-model
 on: [push]
 jobs:
-  run:
+  train-model:
     runs-on: ubuntu-latest
-    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.3.0
+      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      - uses: actions/setup-python@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          python-version: '3.x'
       - name: Train model
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install -r example_cml/requirements.txt
-          python example_cml/train.py
-
+          pip3 install -r requirements.txt
+          python train.py
+          # Create CML report
           cat metrics.txt >> report.md
-          cml publish plot.png --md >> report.md
+          cml publish plot.png --md --title 'Confusion Matrix' >> report.md
           cml send-comment report.md
