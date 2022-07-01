@@ -22,7 +22,7 @@ with open("metrics.txt", "w") as outfile:
     outfile.write("Accuracy: " + str(acc) + "\n")
 
 # Plot it
-disp = ConfusionMatrixDisplay.from_estimator(
+disp = ConfusionMatrixDisplay.from_predictions(
     clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
 )
 plt.savefig("plot.png")
