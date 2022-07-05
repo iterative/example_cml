@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import json
 import os
@@ -12,7 +12,7 @@ X_test = np.genfromtxt("data/test_features.csv")
 y_test = np.genfromtxt("data/test_labels.csv")
 
 # Fit a model
-depth = 2
+depth = 5
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train, y_train)
 
@@ -22,7 +22,7 @@ with open("metrics.txt", "w") as outfile:
     outfile.write("Accuracy: " + str(acc) + "\n")
 
 # Plot it
-disp = ConfusionMatrixDisplay.from_estimator(
+disp = plot_confusion_matrix.from_estimator(
     clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
 )
 plt.savefig("plot.png")
