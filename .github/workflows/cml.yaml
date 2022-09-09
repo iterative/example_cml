@@ -1,5 +1,5 @@
 name: train-my-model
-on: [push]
+on: [pull_request]
 jobs:
   train-model:
     runs-on: ubuntu-latest
@@ -18,5 +18,4 @@ jobs:
           # Create CML report
           cat metrics.txt >> report.md
           cml publish plot.png --md --title 'Confusion Matrix' >> report.md
-          cml send-comment report.md
-          
+          cml send-comment report.md --pr
