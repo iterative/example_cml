@@ -26,3 +26,7 @@ disp = ConfusionMatrixDisplay.from_estimator(
     clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
 )
 plt.savefig("plot.png")
+
+git checkout -b experiment
+git add . && git commit -m "modify forest depth"
+git push origin experiment
