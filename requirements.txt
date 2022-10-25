@@ -1,3 +1,4 @@
 setuptools
-scikit-learn
-matplotlib
+ sklearn>=1
+ scikit-learn
+ matplotlib
