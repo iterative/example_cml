@@ -19,4 +19,4 @@ jobs:
           # Create CML report
           cml comment create --pr --publish metrics.txt
         env:
-          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
