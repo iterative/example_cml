@@ -3,7 +3,7 @@ on: [push]
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
-    container: docker://dvcorg/cml-py3:latest
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
         with:
@@ -15,5 +15,4 @@ jobs:
           cat metrics.txt >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           cml comment create report.md
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
