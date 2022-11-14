@@ -12,10 +12,11 @@ jobs:
         with:
           python-version: '3.x'
       - name: Train model
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        
         run: |
           pip3 install -r requirements.txt
           python train.py
           # Create CML report
           cml comment create --pr --publish metrics.txt
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
