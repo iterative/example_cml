@@ -8,8 +8,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
       - run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
@@ -17,4 +16,6 @@ jobs:
           cat metrics.txt >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           cml comment create report.md
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
