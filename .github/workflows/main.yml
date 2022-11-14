@@ -5,8 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
+      - run : gh api /repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls
       - uses: iterative/setup-cml@v1
       - uses: actions/setup-python@v2
         with:
