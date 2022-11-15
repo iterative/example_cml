@@ -30,11 +30,15 @@ jobs:
           cml comment create report.md
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: pr
+        run: |
+          issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
+          echo "issue=$issue" >>$GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: mshick/add-pr-comment@v2
         with:
-          issue: ${{ github.event.pull_request.head.sha }}
+          issue: ${{ steps.pr.outputs.issue }}
           message: |
-            cml comment create report.md
-            **Hello**
-            🌏
-            !
+            **Howdie!**
