@@ -42,5 +42,7 @@ jobs:
           issue: ${{ steps.pr.outputs.issue }}
           message: |
             **Howdie!**
-          run: |
-            cml comment create report.md
+#           run: |
+#             cml comment create report.md
+          message-path: 
+            report.md
