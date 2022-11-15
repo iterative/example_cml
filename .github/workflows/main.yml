@@ -27,6 +27,12 @@ jobs:
           # Post CML report as a comment in GitHub
           cat metrics.txt >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
-          cml send-comment --pr report.md
+          cml comment create report.md
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Hello**
+            🌏
+            !
