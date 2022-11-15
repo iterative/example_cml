@@ -40,8 +40,8 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           issue: ${{ steps.pr.outputs.issue }}
-          message: |
-            **Howdie!**
+#          message: |
+#            **Howdie!**
 #           run: |
 #             cml comment create report.md
           message-path: 
