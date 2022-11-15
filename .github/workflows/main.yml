@@ -32,7 +32,9 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: mshick/add-pr-comment@v2
         with:
+          issue: ${{ github.event.pull_request.head.sha }}
           message: |
+            cml comment create report.md
             **Hello**
             🌏
             !
