@@ -1,11 +1,5 @@
 name: CML
-on:
-  push:
-  pull_request:
-    branches:    
-      - main
-      - 'experiment'
-      - 'releases/**'
+on: [push]
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
@@ -13,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
         
       - run: |
           pip install -r requirements.txt
@@ -24,4 +18,3 @@ jobs:
           cml comment create report.md
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
