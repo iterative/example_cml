@@ -1,5 +1,9 @@
 name: CML
-on: [push]
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+    branches:
+      - main
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
