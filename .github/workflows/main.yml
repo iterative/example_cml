@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, reopened, edited]
     branches:
-      - main
+      - master
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
