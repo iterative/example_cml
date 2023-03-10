@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Train model
         env:
-          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN2 }}
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
