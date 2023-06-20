@@ -5,6 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
+      - uses: navikt/github-app-token-generator@v1
+        id: get-token
+        with:
+            private-key: ${{ secrets.CML_GITHUB_APP_PEM }}
+            app-id: ${{ secrets.CML_GITHUB_APP_ID }}
+      - uses: actions/checkout@v3
+            token: ${{ steps.get-token.outputs.token }}
       - uses: actions/checkout@v3
       - name: Train model
         env:
