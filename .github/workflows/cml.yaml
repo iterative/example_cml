@@ -1,0 +1,55 @@
+name: CML & DVC
+on: [push]
+jobs:
+  train-and-report:
+    runs-on: ubuntu-latest
+    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - uses: iterative/setup-dvc@v1
+      - name: Train model
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          pip install -r requirements.txt  # Install dependencies
+          dvc pull data --run-cache        # Pull data & run-cache from S3
+          dvc repro                        # Reproduce pipeline
+      - name: Create CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Metrics: workflow vs. main" >> report.md
+          git fetch --depth=1 origin main:main
+
+          dvc metrics diff master --show-md >> report.md
+          echo "## Plots" >> report.md
+          echo "### Class confusions" >> report.md
+          dvc plots diff \
+            --target classes.csv \
+            --template confusion \
+            -x actual \
+            -y predicted \
+            --show-vega master > vega.json
+          vl2png vega.json -s 1.5 > plot.png
+          echo '![](./plot.png "Confusion Matrix")' >> report.md
+
+          echo "### Effects of regularization" >> report.md
+          dvc plots diff \
+            --target estimators.csv \
+            -x Regularization \
+            --show-vega master > vega.json
+          vl2png vega.json -s 1.5 > plot-diff.png
+          echo '![](./plot-diff.png)' >> report.md
+
+          echo "### Training loss" >> report.md
+          dvc plots diff \
+            --target loss.csv --show-vega main > vega.json
+          vl2png vega.json > plot-loss.png
+          echo '![](./plot-loss.png "Training Loss")' >> report.md
+
+          cml comment create report.md
