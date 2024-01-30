@@ -12,13 +12,9 @@ X_test = np.genfromtxt("data/test_features.csv")
 y_test = np.genfromtxt("data/test_labels.csv")
 
 # Fit a model
-<<<<<<< HEAD
 
-depth = 4
-
-=======
 depth = 5
->>>>>>> c9c93716fd5af55e194fccb17839ace3add989cd
+
 clf = RandomForestClassifier(max_depth=depth)
 clf.fit(X_train, y_train)
 
